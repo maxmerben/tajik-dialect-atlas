@@ -1,5 +1,5 @@
 ---
-title: "Reflection of historical vowels /ɪ iː/"
+title: "Reflection of the ancient postposition /radɪj/"
 date: 2026-01-18
 output:
   html_document:
@@ -37,7 +37,7 @@ coordinates <- read_delim("data/coordinates.csv",
                           delim = ",", show_col_types = FALSE)
 features <- left_join(features, coordinates)
 
-feature_data <- features |> filter(feature_id == 2)
+feature_data <- features |> filter(feature_id == 17)
 ```
 
 ```{r echo=FALSE, include=FALSE}

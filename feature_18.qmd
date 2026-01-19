@@ -1,5 +1,5 @@
 ---
-title: "Reflection of historical vowels /ɪ iː/"
+title: "Dialect groups"
 date: 2026-01-18
 output:
   html_document:
@@ -29,7 +29,7 @@ setwd("D:/Учёба/Фарси/tajik-dialect-atlas")
 ::: {{.panel-tabset}}
 
 ```{r echo=FALSE, include=FALSE}
-features <- read_delim("data/features.csv",
+features <- read_delim("data/features_dialects.csv",
                        delim = ",", show_col_types = FALSE)
 features <- drop_na(features, "value_eng")
 
@@ -37,7 +37,7 @@ coordinates <- read_delim("data/coordinates.csv",
                           delim = ",", show_col_types = FALSE)
 features <- left_join(features, coordinates)
 
-feature_data <- features |> filter(feature_id == 2)
+feature_data <- features |> filter(feature_id == 18)
 ```
 
 ```{r echo=FALSE, include=FALSE}
@@ -59,9 +59,10 @@ sort_smart <- function(tbl, col) {
     select(-.sort_key)
 }
 
-feature_data <- feature_data |> sort_smart(value_eng)
+feature_data <- feature_data |> sort_smart(group_eng)
 
 feature_values <- unique(feature_data$value_eng)
+feature_groups <- unique(feature_data$group_eng)
 
 feature_data$feature_orig <- factor(feature_data$feature_orig)
 feature_data$feature_rus <- factor(feature_data$feature_rus)
@@ -70,27 +71,32 @@ feature_data$feature_eng <- factor(feature_data$feature_eng)
 feature_data$value_orig <- factor(feature_data$value_orig)
 feature_data$value_rus <- factor(feature_data$value_rus)
 feature_data$value_eng <- factor(feature_data$value_eng)
+
+feature_data$group_orig <- factor(feature_data$group_orig)
+feature_data$group_rus <- factor(feature_data$group_rus)
+feature_data$group_eng <- factor(feature_data$group_eng)
 ```
 
 ```{r echo=FALSE, include=FALSE}
 palette_set <- "Set1"
+palette_other_set <- "Set3"
 
-value_palette <- colorFactor(
+group_palette <- colorFactor(
   palette = palette_set,
-  domain = feature_values
+  domain = feature_groups
 )
-value_colors <- value_palette(feature_values)
-value_colors[feature_values %in% c("no data", "нет данных")] <- "lightgray"
+group_colors <- group_palette(feature_groups)
+group_colors[feature_groups %in% c("no data", "нет данных")] <- "lightgray"
 ```
 
 ### Map
 
 ```{r}
 minichart_data <- feature_data %>%
-  count(number, value_eng) %>%
-  sort_smart(value_eng) %>%
+  count(number, group_eng) %>%
+  sort_smart(group_eng) %>%
   pivot_wider(
-    names_from = value_eng,
+    names_from = group_eng,
     values_from = n,
     values_fill = 0
   ) %>%
@@ -103,10 +109,20 @@ x <- feature_data %>%
   group_by(number) %>%
   summarise(
     values = paste(unique(value_eng),
-                   collapse = ', '),
+                   collapse = '", "'),
     .groups = "drop")
 coordinates.current$values <- x$values
+x <- feature_data %>%
+  group_by(number) %>%
+  summarise(
+    groups = paste(unique(group_eng),
+                   collapse = '", "'),
+    .groups = "drop")
+coordinates.current$groups <- x$groups
 rm(x)
+
+coordinates.current$values_quoted <- str_c(
+  '"', coordinates.current$values, '"')
 
 coordinates.current$html_popup <- str_c(
   "<b>", coordinates.current$settlement_name_rastorgueva, "</b><br>",
@@ -114,7 +130,8 @@ coordinates.current$html_popup <- str_c(
   "modern country: ", coordinates.current$country_modern, "<br>",
   "coordinates: ", coordinates.current$lat, ", ",
   coordinates.current$lon, "<br><br>",
-  "values: ", coordinates.current$values
+  "dialect: ", coordinates.current$values, "<br>",
+  "dialect group: ", coordinates.current$groups
 )
   
 map <- leaflet(feature_data) %>%
@@ -124,7 +141,7 @@ map <- leaflet(feature_data) %>%
     coordinates.current$lat,
     type = "pie",
     chartdata = minichart_data[, -1],
-    colorPalette = value_colors,
+    colorPalette = group_colors,
     width = 16,
     opacity = 1,
     legendPosition="bottomleft") %>%
@@ -134,7 +151,6 @@ map <- leaflet(feature_data) %>%
     label = coordinates.current$settlement_name_rastorgueva,
     labelOptions = labelOptions(textsize = "12px"),
     popup = coordinates.current$html_popup,
-    fillColor = "white",
     fillOpacity = 0,
     opacity = 0,
     radius = 8) %>%
@@ -169,13 +185,17 @@ map
 ```{r}
 names(coordinates.current)[names(coordinates.current) == "settlement_name_rastorgueva"] <- "name (orig.)"
 names(coordinates.current)[names(coordinates.current) == "settlement_name_official"] <- "name (modern)"
+names(coordinates.current)[names(coordinates.current) == "values"] <- "dialect"
+names(coordinates.current)[names(coordinates.current) == "groups"] <- "dialect group"
+
 DT::datatable(coordinates.current %>%
                 arrange(number) %>%
                 select(
                   `name (orig.)`,
                   `name (modern)`,
                   lat, lon,
-                  values), 
+                  `dialect`,
+                  `dialect group`), 
               class = "cell-border stripe",
               rownames = FALSE,
               filter = "top",

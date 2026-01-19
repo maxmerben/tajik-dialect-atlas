@@ -19,12 +19,14 @@ suppressPackageStartupMessages({
 
 cat("✅ All packages loaded successfully\n\n")
 
-source("scripts/generate_qmd_files.R")
+source("scripts/generate_qmd_files_for_main_features.R")
+source("scripts/generate_qmd_file_for_feature_18.R")
+source("scripts/generate_qmd_file_for_index.R")
 
-cat("Rendering feature pages...\n")
-if (!dir.exists("docs")) {
-  dir.create("docs")
+if (dir.exists("docs")) {
+  unlink("docs", recursive = TRUE)
 }
+dir.create("docs")
 
 # Render the document
 system("quarto render --output-dir docs", intern = FALSE)

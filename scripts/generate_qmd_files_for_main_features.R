@@ -1,7 +1,7 @@
 cat("Starting QMD generation...\n")
 
 # Set working directory
-setwd("D:/Учёба/Фарси/tajik dialect atlas/github")
+setwd("D:/Учёба/Фарси/tajik-dialect-atlas")
 
 # Read data files
 cat("Reading data files...\n")
@@ -13,8 +13,10 @@ if (file.exists('data/features.csv')) {
   stop("Features database file not found: data/features.csv")
 }
 
-#features <- drop_na(features, "value")
+#features <- drop_na(features, "value_eng")
+features$feature_orig <- as.factor(features$feature_orig)
 features$feature_rus <- as.factor(features$feature_rus)
+features$feature_eng <- as.factor(features$feature_eng)
 
 if (file.exists('data/coordinates.csv')) {
   coordinates <- read_delim("data/coordinates.csv",
@@ -28,11 +30,11 @@ features <- left_join(features, coordinates)
 
 # Get unique features
 unique_features <- features |> 
-  group_by(feature_id, feature_rus) |>
+  group_by(feature_id, feature_orig, feature_eng) |>
   summarise(
     unique_settlements = n_distinct(settlement_id),
     datapoints = n(),
-    unique_values = n_distinct(value),
+    unique_values = n_distinct(value_eng),
     .groups = 'drop'
   ) |>
   arrange(feature_id)
@@ -41,16 +43,9 @@ cat("Found", nrow(unique_features), "unique features to process\n")
 
 # Function to create QMD file
 create_qmd_file <- function(feature_row) {
-  print(feature_row)
   feature_id <- feature_row$feature_id
-  feature_title <- feature_row$feature_rus
-  #feature_description <- feature_row$feature_description
-  #compiled <- feature_row$compiled
+  feature_title <- feature_row$feature_eng
   
-  # Get data for this feature
-  feature_data <- features |> filter(feature_id == !!feature_id)
-  feature_values <- sort(unique(feature_data$value))
-
   # Create YAML header with proper CSS styling
   yaml_header <- paste0(
     "---\n",
@@ -88,7 +83,7 @@ library(leaflet.minicharts)
 library(lingtypology)
 library(DT)
 
-setwd("D:/Учёба/Фарси/tajik dialect atlas/github")
+setwd("D:/Учёба/Фарси/tajik-dialect-atlas")
 ```
 
 ::: {{.panel-tabset}}
@@ -96,88 +91,149 @@ setwd("D:/Учёба/Фарси/tajik dialect atlas/github")
 ```{r echo=FALSE, include=FALSE}
 features <- read_delim("data/features.csv",
                        delim = ",", show_col_types = FALSE)
-features <- drop_na(features, "value")
-features$feature_rus <- as.factor(features$feature_rus)
+features <- drop_na(features, "value_eng")
 
 coordinates <- read_delim("data/coordinates.csv",
                           delim = ",", show_col_types = FALSE)
 features <- left_join(features, coordinates)
 
+feature_data <- features |> filter(feature_id == ', feature_id, ')
+```
+
+```{r echo=FALSE, include=FALSE}
+
+# SORTING AND FACTORING
+
+sort_smart <- function(tbl, col) {
+  col <- dplyr::enquo(col)
+
+  tbl %>%
+    mutate(
+      .sort_key = case_when(
+        is.na(!!col) ~ 2L,
+        !!col == "no data" ~ 2L,
+        TRUE ~ 1L
+      )
+    ) %>%
+    arrange(.sort_key, !!col) %>%
+    select(-.sort_key)
+}
+
+feature_data <- feature_data |> sort_smart(value_eng)
+
+feature_values <- unique(feature_data$value_eng)
+
+feature_data$feature_orig <- factor(feature_data$feature_orig)
+feature_data$feature_rus <- factor(feature_data$feature_rus)
+feature_data$feature_eng <- factor(feature_data$feature_eng)
+
+feature_data$value_orig <- factor(feature_data$value_orig)
+feature_data$value_rus <- factor(feature_data$value_rus)
+feature_data$value_eng <- factor(feature_data$value_eng)
+```
+
+```{r echo=FALSE, include=FALSE}
 palette_set <- "Set1"
 
-feature_data <- features |> filter(feature_id == ', feature_id, ')
-feature_values <- sort(unique(feature_data$value))
-
-lang_palette <- colorFactor(
-  palette = palette_set, domain = feature_values)
+value_palette <- colorFactor(
+  palette = palette_set,
+  domain = feature_values
+)
+value_colors <- value_palette(feature_values)
+value_colors[feature_values %in% c("no data", "нет данных")] <- "lightgray"
 ```
 
 ### Map
 
 ```{r}
 minichart_data <- feature_data %>%
-  count(settlement_id, value) %>%
+  count(number, value_eng) %>%
+  sort_smart(value_eng) %>%
   pivot_wider(
-    names_from = value,
+    names_from = value_eng,
     values_from = n,
     values_fill = 0
   ) %>%
-  arrange(settlement_id)
+  arrange(number)
 
-feature_coordinates <- coordinates %>%
-  filter(settlement_id %in% minichart_data$settlement_id)
+coordinates.current <- coordinates %>%
+  filter(number %in% minichart_data$number)
 
-feature_values_by_settlement <- feature_data %>%
-  group_by(settlement_id) %>%
+x <- feature_data %>%
+  group_by(number) %>%
   summarise(
-    values = paste(unique(value),
-                   collapse = \'", "\'),
+    values = paste(unique(value_eng),
+                   collapse = \', \'),
     .groups = "drop")
-feature_coordinates$values <- str_c(
-  \'"\', feature_values_by_settlement$values, \'"\')
+coordinates.current$values <- x$values
+rm(x)
 
-feature_coordinates$html_popup <- str_c(
-  "<b>", feature_coordinates$settlement_name_rastorgueva, "</b><br>",
-  "modern name: ", feature_coordinates$settlement_name_official, "<br>",
-  "modern country: ", feature_coordinates$country_modern, "<br>",
-  "coordinates: ", feature_coordinates$lat, ", ",
-  feature_coordinates$lon, "<br><br>",
-  "values: ", feature_coordinates$values
+coordinates.current$html_popup <- str_c(
+  "<b>", coordinates.current$settlement_name_rastorgueva, "</b><br>",
+  "modern name: ", coordinates.current$settlement_name_official, "<br>",
+  "modern country: ", coordinates.current$country_modern, "<br>",
+  "coordinates: ", coordinates.current$lat, ", ",
+  coordinates.current$lon, "<br><br>",
+  "values: ", coordinates.current$values
 )
   
 map <- leaflet(feature_data) %>%
   addTiles() %>%
   leaflet.minicharts::addMinicharts(
-    feature_coordinates$lon,
-    feature_coordinates$lat,
+    coordinates.current$lon,
+    coordinates.current$lat,
     type = "pie",
     chartdata = minichart_data[, -1],
-    #colorPalette = lang_palette(feature_values),
-    #popup = leaflet.minicharts::popupArgs(
-    #  html = feature_coordinates$html_popup),
+    colorPalette = value_colors,
     width = 16,
     opacity = 1,
     legendPosition="bottomleft") %>%
   addCircleMarkers(
-    feature_coordinates$lon, feature_coordinates$lat,
+    coordinates.current$lon, coordinates.current$lat,
     group = "villages",
-    label = feature_coordinates$settlement_name_rastorgueva,
+    label = coordinates.current$settlement_name_rastorgueva,
     labelOptions = labelOptions(textsize = "12px"),
-    popup = feature_coordinates$html_popup,
+    popup = coordinates.current$html_popup,
     fillColor = "white",
     fillOpacity = 0,
     opacity = 0,
-    radius = 8) -> map
+    radius = 8) %>%
+  addLabelOnlyMarkers(
+    coordinates.current$lon, coordinates.current$lat,
+    group = "numbers",
+    label = coordinates.current$settlement_id,
+    labelOptions = labelOptions(
+      noHide = TRUE, textOnly = TRUE,
+      direction = "left", offset = c(-10, 1.7),
+      style = list("font-size" = "14px"))
+  ) %>%
+  addLabelOnlyMarkers(
+    coordinates.current$lon, coordinates.current$lat,
+    group = "names",
+    label = coordinates.current$settlement_name_official,
+    labelOptions = labelOptions(
+      noHide = TRUE, textOnly = TRUE,
+      direction = "right", offset = c(10, 1.7),
+      style = list("font-size" = "14px"))
+  ) %>%
+  addLayersControl(
+    overlayGroups = c("numbers", "names"),
+    options = layersControlOptions(collapsed = FALSE)) %>%
+  hideGroup("numbers") %>%
+  hideGroup("names")
 map
 ```
 
 ### Data
 
 ```{r}
-DT::datatable(feature_coordinates %>%
+names(coordinates.current)[names(coordinates.current) == "settlement_name_rastorgueva"] <- "name (orig.)"
+names(coordinates.current)[names(coordinates.current) == "settlement_name_official"] <- "name (modern)"
+DT::datatable(coordinates.current %>%
+                arrange(number) %>%
                 select(
-                  settlement_name_rastorgueva,
-                  settlement_name_official,
+                  `name (orig.)`,
+                  `name (modern)`,
                   lat, lon,
                   values), 
               class = "cell-border stripe",
@@ -204,10 +260,11 @@ DT::datatable(feature_coordinates %>%
 # Remove existing QMD files (except core pages)
 cat("Cleaning up existing QMD files...\n")
 existing_qmd_files <- list.files(".", pattern = "\\.qmd$")
-core_files <- c("index.qmd", "about.qmd", "features.qmd")
+core_files <- c("index.qmd", "about.qmd", "features.qmd", "feature_18.qmd")
 to_remove <- existing_qmd_files[!(existing_qmd_files %in% core_files)]
 if (length(to_remove) > 0) {
   file.remove(to_remove)
+  
   cat("Removed", length(to_remove), "existing QMD files\n")
 }
 
@@ -217,22 +274,27 @@ generated_files <- c()
 
 for (i in 1:nrow(unique_features)) {
   feature_row <- unique_features[i, ]
-  cat(sprintf("[%d/%d] Processing feature %d: %s\n", 
-              i, nrow(unique_features), feature_row$feature_id, feature_row$feature_title))
-  
-  filename <- create_qmd_file(feature_row)
-  generated_files <- c(generated_files, filename)
+  if (feature_row$feature_eng != "Dialect groups") {
+    cat(sprintf("[%d/%d] Processing feature %d: %s\n", 
+                i, nrow(unique_features),
+                feature_row$feature_id,
+                feature_row$feature_title))
+    
+    filename <- create_qmd_file(feature_row)
+    generated_files <- c(generated_files, filename)
+  }
 }
 
 unique_features %>%
-  group_by(feature_id, feature_rus) %>%
+  group_by(feature_id, feature_eng) %>%
   summarise(html = str_c(
       feature_id, ". <a href='/feature_", feature_id, ".html'>",
-      feature_rus, "</a>"),
+      feature_eng, "</a>"),
     .groups = "drop") -> unique_features_html
 unique_features$html <- unique_features_html$html
 
-writeLines(paste(unique_features$html, collapse="\n"), "features_list.txt")
+writeLines(paste(unique_features$html, collapse="\n"),
+           "features_list.txt")
 
 cat("\n", paste(rep("=", 60), collapse=""), "\n")
 cat("Successfully generated", length(generated_files), "QMD files\n")

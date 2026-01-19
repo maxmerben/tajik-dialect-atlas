@@ -1,6 +1,6 @@
 ---
-title: "Интервокальное и поствокальное b "
-date: 2025-12-15
+title: "Intervocalic and postvocalic /b/"
+date: 2026-01-18
 output:
   html_document:
     toc: true
@@ -23,7 +23,7 @@ library(leaflet.minicharts)
 library(lingtypology)
 library(DT)
 
-setwd("D:/Учёба/Фарси/tajik dialect atlas/github")
+setwd("D:/Учёба/Фарси/tajik-dialect-atlas")
 ```
 
 ::: {{.panel-tabset}}
@@ -31,88 +31,149 @@ setwd("D:/Учёба/Фарси/tajik dialect atlas/github")
 ```{r echo=FALSE, include=FALSE}
 features <- read_delim("data/features.csv",
                        delim = ",", show_col_types = FALSE)
-features <- drop_na(features, "value")
-features$feature_rus <- as.factor(features$feature_rus)
+features <- drop_na(features, "value_eng")
 
 coordinates <- read_delim("data/coordinates.csv",
                           delim = ",", show_col_types = FALSE)
 features <- left_join(features, coordinates)
 
+feature_data <- features |> filter(feature_id == 4)
+```
+
+```{r echo=FALSE, include=FALSE}
+
+# SORTING AND FACTORING
+
+sort_smart <- function(tbl, col) {
+  col <- dplyr::enquo(col)
+
+  tbl %>%
+    mutate(
+      .sort_key = case_when(
+        is.na(!!col) ~ 2L,
+        !!col == "no data" ~ 2L,
+        TRUE ~ 1L
+      )
+    ) %>%
+    arrange(.sort_key, !!col) %>%
+    select(-.sort_key)
+}
+
+feature_data <- feature_data |> sort_smart(value_eng)
+
+feature_values <- unique(feature_data$value_eng)
+
+feature_data$feature_orig <- factor(feature_data$feature_orig)
+feature_data$feature_rus <- factor(feature_data$feature_rus)
+feature_data$feature_eng <- factor(feature_data$feature_eng)
+
+feature_data$value_orig <- factor(feature_data$value_orig)
+feature_data$value_rus <- factor(feature_data$value_rus)
+feature_data$value_eng <- factor(feature_data$value_eng)
+```
+
+```{r echo=FALSE, include=FALSE}
 palette_set <- "Set1"
 
-feature_data <- features |> filter(feature_id == 4)
-feature_values <- sort(unique(feature_data$value))
-
-lang_palette <- colorFactor(
-  palette = palette_set, domain = feature_values)
+value_palette <- colorFactor(
+  palette = palette_set,
+  domain = feature_values
+)
+value_colors <- value_palette(feature_values)
+value_colors[feature_values %in% c("no data", "нет данных")] <- "lightgray"
 ```
 
 ### Map
 
 ```{r}
 minichart_data <- feature_data %>%
-  count(settlement_id, value) %>%
+  count(number, value_eng) %>%
+  sort_smart(value_eng) %>%
   pivot_wider(
-    names_from = value,
+    names_from = value_eng,
     values_from = n,
     values_fill = 0
   ) %>%
-  arrange(settlement_id)
+  arrange(number)
 
-feature_coordinates <- coordinates %>%
-  filter(settlement_id %in% minichart_data$settlement_id)
+coordinates.current <- coordinates %>%
+  filter(number %in% minichart_data$number)
 
-feature_values_by_settlement <- feature_data %>%
-  group_by(settlement_id) %>%
+x <- feature_data %>%
+  group_by(number) %>%
   summarise(
-    values = paste(unique(value),
-                   collapse = '", "'),
+    values = paste(unique(value_eng),
+                   collapse = ', '),
     .groups = "drop")
-feature_coordinates$values <- str_c(
-  '"', feature_values_by_settlement$values, '"')
+coordinates.current$values <- x$values
+rm(x)
 
-feature_coordinates$html_popup <- str_c(
-  "<b>", feature_coordinates$settlement_name_rastorgueva, "</b><br>",
-  "modern name: ", feature_coordinates$settlement_name_official, "<br>",
-  "modern country: ", feature_coordinates$country_modern, "<br>",
-  "coordinates: ", feature_coordinates$lat, ", ",
-  feature_coordinates$lon, "<br><br>",
-  "values: ", feature_coordinates$values
+coordinates.current$html_popup <- str_c(
+  "<b>", coordinates.current$settlement_name_rastorgueva, "</b><br>",
+  "modern name: ", coordinates.current$settlement_name_official, "<br>",
+  "modern country: ", coordinates.current$country_modern, "<br>",
+  "coordinates: ", coordinates.current$lat, ", ",
+  coordinates.current$lon, "<br><br>",
+  "values: ", coordinates.current$values
 )
   
 map <- leaflet(feature_data) %>%
   addTiles() %>%
   leaflet.minicharts::addMinicharts(
-    feature_coordinates$lon,
-    feature_coordinates$lat,
+    coordinates.current$lon,
+    coordinates.current$lat,
     type = "pie",
     chartdata = minichart_data[, -1],
-    #colorPalette = lang_palette(feature_values),
-    #popup = leaflet.minicharts::popupArgs(
-    #  html = feature_coordinates$html_popup),
+    colorPalette = value_colors,
     width = 16,
     opacity = 1,
     legendPosition="bottomleft") %>%
   addCircleMarkers(
-    feature_coordinates$lon, feature_coordinates$lat,
+    coordinates.current$lon, coordinates.current$lat,
     group = "villages",
-    label = feature_coordinates$settlement_name_rastorgueva,
+    label = coordinates.current$settlement_name_rastorgueva,
     labelOptions = labelOptions(textsize = "12px"),
-    popup = feature_coordinates$html_popup,
+    popup = coordinates.current$html_popup,
     fillColor = "white",
     fillOpacity = 0,
     opacity = 0,
-    radius = 8) -> map
+    radius = 8) %>%
+  addLabelOnlyMarkers(
+    coordinates.current$lon, coordinates.current$lat,
+    group = "numbers",
+    label = coordinates.current$settlement_id,
+    labelOptions = labelOptions(
+      noHide = TRUE, textOnly = TRUE,
+      direction = "left", offset = c(-10, 1.7),
+      style = list("font-size" = "14px"))
+  ) %>%
+  addLabelOnlyMarkers(
+    coordinates.current$lon, coordinates.current$lat,
+    group = "names",
+    label = coordinates.current$settlement_name_official,
+    labelOptions = labelOptions(
+      noHide = TRUE, textOnly = TRUE,
+      direction = "right", offset = c(10, 1.7),
+      style = list("font-size" = "14px"))
+  ) %>%
+  addLayersControl(
+    overlayGroups = c("numbers", "names"),
+    options = layersControlOptions(collapsed = FALSE)) %>%
+  hideGroup("numbers") %>%
+  hideGroup("names")
 map
 ```
 
 ### Data
 
 ```{r}
-DT::datatable(feature_coordinates %>%
+names(coordinates.current)[names(coordinates.current) == "settlement_name_rastorgueva"] <- "name (orig.)"
+names(coordinates.current)[names(coordinates.current) == "settlement_name_official"] <- "name (modern)"
+DT::datatable(coordinates.current %>%
+                arrange(number) %>%
                 select(
-                  settlement_name_rastorgueva,
-                  settlement_name_official,
+                  `name (orig.)`,
+                  `name (modern)`,
                   lat, lon,
                   values), 
               class = "cell-border stripe",

@@ -1,28 +1,36 @@
 ---
 title: "Digital Atlas of Tajik Dialects"
-format: html
-editor: source
+date: 2026-01-18
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cosmo
+    highlight: tango
+    css: styles.css
 ---
 
-## Features
 
-1. <a href='/feature_1.html'>Отражение исторических гласных u ū o</a>
-2. <a href='/feature_2.html'>Отражение исторических гласных i ī</a>
-3. <a href='/feature_3.html'>Употребление фарингальных согласных h, ḫ, ع</a>
-4. <a href='/feature_4.html'>Интервокальное и поствокальное b </a>
-5. <a href='/feature_5.html'>Функции местоимённых энклитик</a>
-6. <a href='/feature_6.html'>Употребление приставки bu-, bъ-</a>
-7. <a href='/feature_7.html'>Употребление приставки me в форме настоящего-будущего времени</a>
-8. <a href='/feature_8.html'>Глагольные окончания 3-го лица единственного числа</a>
-9. <a href='/feature_9.html'>Глагольные окончания 2-го лица множественного числа</a>
-10. <a href='/feature_10.html'>Форма перфекта в 3-м лице единственного числа</a>
-11. <a href='/feature_11.html'>Форма перфекта в 1-м лице единственного числа и в 3-м лице множественного числа</a>
-12. <a href='/feature_12.html'>Употребление формы с istodan в изъявительном наклонении</a>
-13. <a href='/feature_13.html'>Употребление форм с istodan в аудитивном, сослагательном и предположительном наклонении</a>
-14. <a href='/feature_14.html'>Употребление форм предположительного наклонения и сложно-деепричастных глаголов</a>
-15. <a href='/feature_15.html'>Отражение древнего предлога || послелога antar</a>
-16. <a href='/feature_16.html'>Отражение древнего предлога || послелога patiy</a>
+## Maps
 
+1. <a href='/feature_1.html'>Reflection of historical vowels /u uː oː/</a>
+2. <a href='/feature_2.html'>Reflection of historical vowels /ɪ iː/</a>
+3. <a href='/feature_3.html'>Pharyngeal consonants /h ħ ʔ/</a>
+4. <a href='/feature_4.html'>Intervocalic and postvocalic /b/</a>
+5. <a href='/feature_5.html'>Functions of pronominal enclitics</a>
+6. <a href='/feature_6.html'>Prefix /bu-/, /bɯ-/</a>
+7. <a href='/feature_7.html'>Affix /me-/ in the Present-Future tense</a>
+8. <a href='/feature_8.html'>Verb suffix in 3SG</a>
+9. <a href='/feature_9.html'>Verb suffix in 2PL</a>
+10. <a href='/feature_10.html'>The Perfect form in 3SG</a>
+11. <a href='/feature_11.html'>The Perfect form in 1SG and in 3PL</a>
+12. <a href='/feature_12.html'>Use of the auxiliary /ɪstodan/ in the indicative mood</a>
+13. <a href='/feature_13.html'>Use of the auxiliary /ɪstodan/ in evidential, subjunctive and presumptive moods</a>
+14. <a href='/feature_14.html'>Presence of the presumptive mood and serial verb constructions</a>
+15. <a href='/feature_15.html'>Reflection of the ancient adposition /antar/</a>
+16. <a href='/feature_16.html'>Reflection of the ancient adposition /patɪj/</a>
+17. <a href='/feature_17.html'>Reflection of the ancient postposition /radɪj/</a>
+18. <a href='/feature_18.html'>**Dialect groups**</a>
 
 ---
 
