@@ -19,6 +19,8 @@ suppressPackageStartupMessages({
 
 cat("✅ All packages loaded successfully\n\n")
 
+setwd("D:/Учёба/Фарси/tajik-dialect-atlas")
+
 source("scripts/generate_qmd_files_for_main_features.R")
 source("scripts/generate_qmd_file_for_feature_18.R")
 source("scripts/generate_qmd_file_for_index.R")

@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Digital Atlas of Tajik Dialects",
     "section": "",
-    "text": "Отражение исторических гласных u ū o\nОтражение исторических гласных i ī\nУпотребление фарингальных согласных h, ḫ, ع\nИнтервокальное и поствокальное b \nФункции местоимённых энклитик\nУпотребление приставки bu-, bъ-\nУпотребление приставки me в форме настоящего-будущего времени\nГлагольные окончания 3-го лица единственного числа\nГлагольные окончания 2-го лица множественного числа\nФорма перфекта в 3-м лице единственного числа\nФорма перфекта в 1-м лице единственного числа и в 3-м лице множественного числа\nУпотребление формы с istodan в изъявительном наклонении\nУпотребление форм с istodan в аудитивном, сослагательном и предположительном наклонении\nУпотребление форм предположительного наклонения и сложно-деепричастных глаголов\nОтражение древнего предлога || послелога antar\nОтражение древнего предлога || послелога patiy"
+    "text": "Reflex of historical vowels /u uː oː/\nReflex of historical vowels /ɪ iː/\nPresence of pharyngeal consonants /h ħ ʔ/\nSpirantization of /b/ in intervocalic and postvocalic positions\nFunctions of pronominal enclitics\nUse of the prefix /bu/, /bɯ/\nForms of the affix /me/ in the Present-Future tense\nForm of the verb suffix in 3rd person singular\nForm of the verb suffix in 2nd person plural\nThe Perfect form in 3rd person singular\nThe Perfect form in 1st person singular and in 3rd person plural\nUse of the auxiliary /ɪstodan/ in the indicative mood\nUse of the auxiliary /ɪstodan/ in evidential, subjunctive and presumptive verb forms\nPresence of the presumptive verb forms and serial verb constructions\nReflex of the ancient adposition /antar/\nReflex of the ancient adposition /patɪj/\nReflex of the ancient postposition /radɪj/\nDialect groups"
   },
   {
-    "objectID": "index.html#features",
-    "href": "index.html#features",
+    "objectID": "index.html#maps",
+    "href": "index.html#maps",
     "title": "Digital Atlas of Tajik Dialects",
     "section": "",
-    "text": "Отражение исторических гласных u ū o\nОтражение исторических гласных i ī\nУпотребление фарингальных согласных h, ḫ, ع\nИнтервокальное и поствокальное b \nФункции местоимённых энклитик\nУпотребление приставки bu-, bъ-\nУпотребление приставки me в форме настоящего-будущего времени\nГлагольные окончания 3-го лица единственного числа\nГлагольные окончания 2-го лица множественного числа\nФорма перфекта в 3-м лице единственного числа\nФорма перфекта в 1-м лице единственного числа и в 3-м лице множественного числа\nУпотребление формы с istodan в изъявительном наклонении\nУпотребление форм с istodan в аудитивном, сослагательном и предположительном наклонении\nУпотребление форм предположительного наклонения и сложно-деепричастных глаголов\nОтражение древнего предлога || послелога antar\nОтражение древнего предлога || послелога patiy"
+    "text": "Reflex of historical vowels /u uː oː/\nReflex of historical vowels /ɪ iː/\nPresence of pharyngeal consonants /h ħ ʔ/\nSpirantization of /b/ in intervocalic and postvocalic positions\nFunctions of pronominal enclitics\nUse of the prefix /bu/, /bɯ/\nForms of the affix /me/ in the Present-Future tense\nForm of the verb suffix in 3rd person singular\nForm of the verb suffix in 2nd person plural\nThe Perfect form in 3rd person singular\nThe Perfect form in 1st person singular and in 3rd person plural\nUse of the auxiliary /ɪstodan/ in the indicative mood\nUse of the auxiliary /ɪstodan/ in evidential, subjunctive and presumptive verb forms\nPresence of the presumptive verb forms and serial verb constructions\nReflex of the ancient adposition /antar/\nReflex of the ancient adposition /patɪj/\nReflex of the ancient postposition /radɪj/\nDialect groups"
   },
   {
     "objectID": "index.html#how-to-cite",
@@ -30,56 +30,63 @@
   {
     "objectID": "feature_8.html",
     "href": "feature_8.html",
-    "title": "Глагольные окончания 3-го лица единственного числа",
+    "title": "Form of the verb suffix in 3rd person singular",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_6.html",
     "href": "feature_6.html",
-    "title": "Употребление приставки bu-, bъ-",
+    "title": "Use of the prefix /bu/, /bɯ/",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_4.html",
     "href": "feature_4.html",
-    "title": "Интервокальное и поствокальное b",
+    "title": "Spirantization of /b/ in intervocalic and postvocalic positions",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_2.html",
     "href": "feature_2.html",
-    "title": "Отражение исторических гласных i ī",
+    "title": "Reflex of historical vowels /ɪ iː/",
+    "section": "",
+    "text": "Map\n\n\n\n\n\n\n\n\nData"
+  },
+  {
+    "objectID": "feature_17.html",
+    "href": "feature_17.html",
+    "title": "Reflex of the ancient postposition /radɪj/",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_15.html",
     "href": "feature_15.html",
-    "title": "Отражение древнего предлога || послелога antar",
+    "title": "Reflex of the ancient adposition /antar/",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_13.html",
     "href": "feature_13.html",
-    "title": "Употребление форм с istodan в аудитивном, сослагательном и предположительном наклонении",
+    "title": "Use of the auxiliary /ɪstodan/ in evidential, subjunctive and presumptive verb forms",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_11.html",
     "href": "feature_11.html",
-    "title": "Форма перфекта в 1-м лице единственного числа и в 3-м лице множественного числа",
+    "title": "The Perfect form in 1st person singular and in 3rd person plural",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_1.html",
     "href": "feature_1.html",
-    "title": "Отражение исторических гласных u ū o",
+    "title": "Reflex of historical vowels /u uː oː/",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
@@ -93,106 +100,64 @@
   {
     "objectID": "feature_10.html",
     "href": "feature_10.html",
-    "title": "Форма перфекта в 3-м лице единственного числа",
+    "title": "The Perfect form in 3rd person singular",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_12.html",
     "href": "feature_12.html",
-    "title": "Употребление формы с istodan в изъявительном наклонении",
+    "title": "Use of the auxiliary /ɪstodan/ in the indicative mood",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_14.html",
     "href": "feature_14.html",
-    "title": "Употребление форм предположительного наклонения и сложно-деепричастных глаголов",
+    "title": "Presence of the presumptive verb forms and serial verb constructions",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_16.html",
     "href": "feature_16.html",
-    "title": "Отражение древнего предлога || послелога patiy",
+    "title": "Reflex of the ancient adposition /patɪj/",
+    "section": "",
+    "text": "Map\n\n\n\n\n\n\n\n\nData"
+  },
+  {
+    "objectID": "feature_18.html",
+    "href": "feature_18.html",
+    "title": "Dialect groups",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_3.html",
     "href": "feature_3.html",
-    "title": "Употребление фарингальных согласных h, ḫ, ع",
+    "title": "Presence of pharyngeal consonants /h ħ ʔ/",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_5.html",
     "href": "feature_5.html",
-    "title": "Функции местоимённых энклитик",
+    "title": "Functions of pronominal enclitics",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_7.html",
     "href": "feature_7.html",
-    "title": "Употребление приставки me в форме настоящего-будущего времени",
+    "title": "Forms of the affix /me/ in the Present-Future tense",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
   },
   {
     "objectID": "feature_9.html",
     "href": "feature_9.html",
-    "title": "Глагольные окончания 2-го лица множественного числа",
+    "title": "Form of the verb suffix in 2nd person plural",
     "section": "",
     "text": "Map\n\n\n\n\n\n\n\n\nData"
-  },
-  {
-    "objectID": "docs/site_libs/minichart-0.2.2/doc/introduction.html",
-    "href": "docs/site_libs/minichart-0.2.2/doc/introduction.html",
-    "title": "Introduction to leaflet.minicharts",
-    "section": "",
-    "text": "For a few years now, it has become very to create interactive maps with R thanks to the package leaflet by the Rstudio team. Nevertheless, it only provides only a few functions to create basic shapes on a map, so the information that can be represented on a single map is limited: if you have some data associated to some points, you can only represent at most two variables by drawing circles and changing their radius and color according to data.\nleaflet.minicharts is an R package that provides two functions to add and update small charts on an interactive maps created with the package leaflet. These charts can be used to represent as many variables as desired associated to geographical points. Currently, three types of chart are supported: barcharts (the default), pie charts and polar area charts.\nlet’s have a look to a concrete example."
-  },
-  {
-    "objectID": "docs/site_libs/minichart-0.2.2/doc/introduction.html#data",
-    "href": "docs/site_libs/minichart-0.2.2/doc/introduction.html#data",
-    "title": "Introduction to leaflet.minicharts",
-    "section": "Data",
-    "text": "Data\nThe package provides a table that contains the electric production, consumption and exchanges of France from january 2010 to february 2017 and of 12 french regions from january 2013 to february 2017.\nIn addition to the total production, the table contains one column for each type of production. The table also contains the latitude and longitude of the center of the regions.\n\n\n                  area      lng      lat   month total nuclear coal fuel gaz\n1 Auvergne-Rhone-Alpes 4.537338 45.51266 2015-03 11430    8230    6   40 200\n2 Auvergne-Rhone-Alpes 4.537338 45.51266 2015-06 10056    7200    4   35   5\n3 Auvergne-Rhone-Alpes 4.537338 45.51266 2013-04 10532    7410    0   31   3\n4 Auvergne-Rhone-Alpes 4.537338 45.51266 2015-04 10103    7275    4   39  86\n5 Auvergne-Rhone-Alpes 4.537338 45.51266 2014-08  9052    6357    0   25  -1\n6 Auvergne-Rhone-Alpes 4.537338 45.51266 2015-11  9258    7192    5   45 250\n  hydraulic wind solar bioenergy load balance export import balanceUK balanceES\n1      2737   74    57        82 6326    4747     NA     NA        NA        NA\n2      2606   44   101        58 4848    4891     NA     NA        NA        NA\n3      2948   55    39        42   NA      NA     NA     NA        NA        NA\n4      2487   66    81        61 5283    4439     NA     NA        NA        NA\n5      2487   38    76        68 4299    4447     NA     NA        NA        NA\n6      1563   75    40        86 5829    3141     NA     NA        NA        NA\n  balanceIT balanceCH balanceDEBE\n1        NA        NA          NA\n2        NA        NA          NA\n3        NA        NA          NA\n4        NA        NA          NA\n5        NA        NA          NA\n6        NA        NA          NA"
-  },
-  {
-    "objectID": "docs/site_libs/minichart-0.2.2/doc/introduction.html#renewable-productions-in-2016",
-    "href": "docs/site_libs/minichart-0.2.2/doc/introduction.html#renewable-productions-in-2016",
-    "title": "Introduction to leaflet.minicharts",
-    "section": "Renewable productions in 2016",
-    "text": "Renewable productions in 2016\nNowadays, France has an objective of 23% of renewable energies in the consumption of the country by 2020. Are the country close to its objective. Is the share of renewable energies similar in all regions?\nTo answer this question let us focus on the year 2016 We first prepare the required data with package dplyr:\n\n\n# A tibble: 6 × 23\n  area          lat   lng  total nuclear  coal  fuel   gaz hydraulic  wind solar\n  &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Auvergne-R…  45.5  4.54 108517   75002    59   101  2318     28398   849   803\n2 Bourgogne-…  47.2  4.81   2762       0     0     1   644       939   773   211\n3 Bretagne     48.2 -2.84   3141       0     0     9   543       581  1472   192\n4 Centre-Val…  47.5  1.69  78430   75733     0     0   274       120  1616   238\n5 Grand-Est    48.7  5.61 107755   82734  1650    41  8282      8990  4917   462\n6 Hauts-de-F…  50.0  2.77  45593   31222    48    17  8302         8  4851   122\n# ℹ 12 more variables: bioenergy &lt;dbl&gt;, load &lt;dbl&gt;, balance &lt;dbl&gt;,\n#   export &lt;dbl&gt;, import &lt;dbl&gt;, balanceUK &lt;dbl&gt;, balanceES &lt;dbl&gt;,\n#   balanceIT &lt;dbl&gt;, balanceCH &lt;dbl&gt;, balanceDEBE &lt;dbl&gt;, renewable &lt;dbl&gt;,\n#   non_renewable &lt;dbl&gt;\n\n\nWe also create a base map that will be used in all the following examples\nWe now add to the base map a pie chart for each region that represents the share of renewable energies. We also change the width of the pie charts so their area is proportional to the total production of the corresponding region.\n\n\n\n\n\n\nWe can see that the three south east regions exceed the target of 23%, but most regions are far from this objective. Globally, renewable energies represented only 19% percent of the production of 2016.\nNow let’s represent the different types of renewable production using bar charts.\n\n\n\n\n\n\nHydraulic production is far more important than solar and wind. Without surprise, solar production is more important in south while wind production is more important in the north."
-  },
-  {
-    "objectID": "docs/site_libs/minichart-0.2.2/doc/introduction.html#representing-a-single-variable",
-    "href": "docs/site_libs/minichart-0.2.2/doc/introduction.html#representing-a-single-variable",
-    "title": "Introduction to leaflet.minicharts",
-    "section": "Representing a single variable",
-    "text": "Representing a single variable\nleaflet.minicharts has been designed to represent multiple variables at once, but you still may want to use it to represent a single variable. In the next example, we represent the total load of each french region in 2016. When data passed to addMinicharts contains a single column, it automatically represents it with circle which area is proportional to the corresponding value. In the example we also use the parameter showLabels to display rounded values of the variable inside the circles.\n\n\n\n\n\n\nThis is nice, isn’t it?"
-  },
-  {
-    "objectID": "docs/site_libs/minichart-0.2.2/doc/introduction.html#animated-maps",
-    "href": "docs/site_libs/minichart-0.2.2/doc/introduction.html#animated-maps",
-    "title": "Introduction to leaflet.minicharts",
-    "section": "Animated maps",
-    "text": "Animated maps\nUntil now, we have only represented aggregated data but it would be nice to create a map that represents the evolution over time of some variables. It is actually easy with leaflet.minicharts. The first step is to construct a table containing longitude, latitude, a time column and the variables we want to represent. The table eco2mix already has all these columns. We only need to filter the rows containing data for the entire country.\nNow we can create our animated map by using the argument “time”:"
-  },
-  {
-    "objectID": "docs/site_libs/minichart-0.2.2/doc/introduction.html#represent-flows",
-    "href": "docs/site_libs/minichart-0.2.2/doc/introduction.html#represent-flows",
-    "title": "Introduction to leaflet.minicharts",
-    "section": "Represent flows",
-    "text": "Represent flows\nSince version 0.2, leaflet.minicharts has also functions to represent flows between points and their evolution. To illustrate this, let’s represent the evolution of electricity exchanges between France and Neighboring countries.\nTo do that, we use function addFlows. It requires coordinates of two points for each flow and the value of the flow. Other arguments are similar to addMinicharts.\n\n\n\n\n\n\nOf course, you can represent flows and minicharts on the same map!"
-  },
-  {
-    "objectID": "docs/site_libs/minichart-0.2.2/doc/introduction.html#use-in-shiny-web-applications",
-    "href": "docs/site_libs/minichart-0.2.2/doc/introduction.html#use-in-shiny-web-applications",
-    "title": "Introduction to leaflet.minicharts",
-    "section": "Use in shiny web applications",
-    "text": "Use in shiny web applications\nIn shiny applications, you can create nice transition effects by using functions leafletproxy and updateMinicharts/updateFlows. In the server function you first need to initialize the map and the minicharts. The important thing here is to use parameter layerId so that updateMinicharts can know which chart to update with which values.\nThen use leafletProxy() and updateMinicharts in your reactive code:\nYou can find a live example here."
   }
 ]

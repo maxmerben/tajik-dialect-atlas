@@ -177,8 +177,9 @@ coordinates.current$values_quoted <- str_c(
   \'"\', coordinates.current$values, \'"\')
 
 coordinates.current$html_popup <- str_c(
-  "<b>", coordinates.current$settlement_name_rastorgueva, "</b><br>",
-  "modern name: ", coordinates.current$settlement_name_official, "<br>",
+  "<b>", coordinates.current$settlement_name_official_full, "</b><br>",
+  "ID: ", coordinates.current$settlement_id, "<br>",
+  "name in the original source: ", coordinates.current$settlement_name_rastorgueva, "<br>",
   "modern country: ", coordinates.current$country_modern, "<br>",
   "coordinates: ", coordinates.current$lat, ", ",
   coordinates.current$lon, "<br><br>",
@@ -200,7 +201,7 @@ map <- leaflet(feature_data) %>%
   addCircleMarkers(
     coordinates.current$lon, coordinates.current$lat,
     group = "villages",
-    label = coordinates.current$settlement_name_rastorgueva,
+    label = coordinates.current$settlement_name_official_full,
     labelOptions = labelOptions(textsize = "12px"),
     popup = coordinates.current$html_popup,
     fillColor = "white",
@@ -237,7 +238,7 @@ map
 
 ```{r}
 names(coordinates.current)[names(coordinates.current) == "settlement_name_rastorgueva"] <- "name (orig.)"
-names(coordinates.current)[names(coordinates.current) == "settlement_name_official"] <- "name (modern)"
+names(coordinates.current)[names(coordinates.current) == "settlement_name_official_full"] <- "name (modern)"
 names(coordinates.current)[names(coordinates.current) == "values"] <- "dialect"
 names(coordinates.current)[names(coordinates.current) == "groups"] <- "dialect group"
 
