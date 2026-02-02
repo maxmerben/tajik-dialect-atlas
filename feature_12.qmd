@@ -1,6 +1,6 @@
 ---
 title: "Use of the auxiliary /ɪstodan/ in the indicative mood"
-date: 2026-01-20
+date: 2026-02-02
 output:
   html_document:
     toc: true
@@ -84,11 +84,23 @@ feature_data$value_eng <- factor(feature_data$value_eng)
 ```
 
 ```{r echo=FALSE, include=FALSE}
-palette_set <- "Set1"
+default_palette <- c(
+  "#5FC857FF",
+  "#F06F4AFF",
+  "#E0D64DFF",
+  "#6F88DCFF",
+  "#FA8FC0FF",
+  "#7CCFDEFF",
+  "#F2AE2BFF",
+  "#B95BCFFF",
+  "#B8A754FF"
+)
 
 value_palette <- colorFactor(
-  palette = palette_set,
-  domain = feature_values
+  palette = as.character(
+    default_palette[0:length(feature_values)]),
+  domain = feature_values,
+  na.color = "lightgray"
 )
 value_colors <- value_palette(feature_values)
 value_colors[feature_values %in% c("no data", "нет данных")] <- "lightgray"
@@ -121,6 +133,7 @@ rm(x)
 
 coordinates.current$html_popup <- str_c(
   "<b>", coordinates.current$settlement_name_official_full, "</b><br>",
+  "ID: ", coordinates.current$settlement_id, "<br>",
   "name in the original source: ", coordinates.current$settlement_name_rastorgueva, "<br>",
   "modern country: ", coordinates.current$country_modern, "<br>",
   "coordinates: ", coordinates.current$lat, ", ",
@@ -132,6 +145,8 @@ coordinates.current$html_popup <- str_c(
   
 map <- leaflet(feature_data) %>%
   addTiles() %>%
+  
+  # VISIBLE MINICHART MARKERS FOR FEATURE VALUES
   leaflet.minicharts::addMinicharts(
     coordinates.current$lon,
     coordinates.current$lat,
@@ -141,6 +156,8 @@ map <- leaflet(feature_data) %>%
     width = 16,
     opacity = 1,
     legendPosition="bottomleft") %>%
+  
+  # INVISIBLE CIRCLE MARKERS FOR POPUP
   addCircleMarkers(
     coordinates.current$lon, coordinates.current$lat,
     group = "villages",
@@ -151,22 +168,26 @@ map <- leaflet(feature_data) %>%
     fillOpacity = 0,
     opacity = 0,
     radius = 8) %>%
+  
+  # VILLAGE NUMBERS
   addLabelOnlyMarkers(
     coordinates.current$lon, coordinates.current$lat,
     group = "numbers",
     label = coordinates.current$settlement_id,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "left", offset = c(-10, 1.7),
+      direction = "left", offset = c(-10, 1),
       style = list("font-size" = "14px"))
   ) %>%
+  
+  # VILLAGE NAMES
   addLabelOnlyMarkers(
     coordinates.current$lon, coordinates.current$lat,
     group = "names",
     label = coordinates.current$settlement_name_official,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "right", offset = c(10, 1.7),
+      direction = "right", offset = c(10, 1),
       style = list("font-size" = "14px"))
   ) %>%
   addLayersControl(

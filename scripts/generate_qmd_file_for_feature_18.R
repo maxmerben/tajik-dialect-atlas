@@ -131,14 +131,19 @@ feature_data$group_eng <- factor(feature_data$group_eng)
 ```
 
 ```{r echo=FALSE, include=FALSE}
-palette_set <- "Set1"
-
-group_palette <- colorFactor(
-  palette = palette_set,
-  domain = feature_groups
+default_palette <- c(
+  "#5FC857FF",
+  "#F06F4AFF",
+  "#E0D64DFF",
+  "#6F88DCFF",
+  "#FA8FC0FF",
+  "#7CCFDEFF",
+  "#F2AE2BFF",
+  "#B95BCFFF",
+  "#B8A754FF"
 )
-group_colors <- group_palette(feature_groups)
-group_colors[feature_groups %in% c("no data", "нет данных")] <- "lightgray"
+
+#additional_palette <- c("#CF4E9CFF", "#8C57A2FF", "#355DB9FF", "#82581FFF", "#2F709EFF", "#E5614CFF", "#97A1A7FF", "#3DA873FF", "#DC9445FF")
 ```
 
 ### Map
@@ -178,7 +183,6 @@ coordinates.current$values_quoted <- str_c(
 
 coordinates.current$html_popup <- str_c(
   "<b>", coordinates.current$settlement_name_official_full, "</b><br>",
-  "ID: ", coordinates.current$settlement_id, "<br>",
   "name in the original source: ", coordinates.current$settlement_name_rastorgueva, "<br>",
   "modern country: ", coordinates.current$country_modern, "<br>",
   "coordinates: ", coordinates.current$lat, ", ",
@@ -186,21 +190,36 @@ coordinates.current$html_popup <- str_c(
   "dialect: ", coordinates.current$values, "<br>",
   "dialect group: ", coordinates.current$groups
 )
-  
+coordinates.current$value_color <- arrange(
+  feature_data, number)$value_color
+coordinates.current$group_color <- arrange(
+  feature_data, number)$group_color
+
 map <- leaflet(feature_data) %>%
   addTiles() %>%
-  leaflet.minicharts::addMinicharts(
-    coordinates.current$lon,
-    coordinates.current$lat,
-    type = "pie",
-    chartdata = minichart_data[, -1],
-    colorPalette = group_colors,
-    width = 16,
-    opacity = 1,
-    legendPosition="bottomleft") %>%
+  
+  # VISIBLE CIRCLE MARKERS FOR DIALECT VALUES
   addCircleMarkers(
     coordinates.current$lon, coordinates.current$lat,
-    group = "villages",
+    group = "dialects",
+    label = coordinates.current$settlement_name_official_full,
+    labelOptions = labelOptions(textsize = "12px"),
+    color = coordinates.current$value_color,
+    fillOpacity = 100,
+    opacity = 0,
+    radius = 8) %>%
+  
+  # VISIBLE MINICHART MARKERS FOR GROUP VALUES
+  addCircleMarkers(
+    coordinates.current$lon, coordinates.current$lat,
+    fillColor = coordinates.current$group_color,
+    fillOpacity = 100,
+    radius = 5,
+    opacity = 0) %>%
+  
+  # INVISIBLE CIRCLE MARKERS FOR POPUP
+  addCircleMarkers(
+    coordinates.current$lon, coordinates.current$lat,
     label = coordinates.current$settlement_name_official_full,
     labelOptions = labelOptions(textsize = "12px"),
     popup = coordinates.current$html_popup,
@@ -208,22 +227,26 @@ map <- leaflet(feature_data) %>%
     fillOpacity = 0,
     opacity = 0,
     radius = 8) %>%
+  
+  # VILLAGE NUMBERS
   addLabelOnlyMarkers(
     coordinates.current$lon, coordinates.current$lat,
     group = "numbers",
     label = coordinates.current$settlement_id,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "left", offset = c(-10, 1.7),
+      direction = "left", offset = c(-10, 1),
       style = list("font-size" = "14px"))
   ) %>%
+  
+  # VILLAGE NAMES
   addLabelOnlyMarkers(
     coordinates.current$lon, coordinates.current$lat,
     group = "names",
     label = coordinates.current$settlement_name_official,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "right", offset = c(10, 1.7),
+      direction = "right", offset = c(10, 1),
       style = list("font-size" = "14px"))
   ) %>%
   addLayersControl(

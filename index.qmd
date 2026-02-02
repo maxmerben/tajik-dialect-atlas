@@ -1,6 +1,6 @@
 ---
 title: "Digital Atlas of Tajik Dialects"
-date: 2026-01-20
+date: 2026-02-02
 output:
   html_document:
     toc: true
