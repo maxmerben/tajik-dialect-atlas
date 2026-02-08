@@ -207,26 +207,26 @@ map <- leaflet(feature_data) %>%
     color = coordinates.current$value_color,
     fillOpacity = 100,
     opacity = 0,
-    radius = 8) %>%
+    radius = 10) %>%
   
   # VISIBLE MINICHART MARKERS FOR GROUP VALUES
   addCircleMarkers(
     coordinates.current$lon, coordinates.current$lat,
     fillColor = coordinates.current$group_color,
     fillOpacity = 100,
-    radius = 5,
+    radius = 7,
     opacity = 0) %>%
   
   # INVISIBLE CIRCLE MARKERS FOR POPUP
   addCircleMarkers(
     coordinates.current$lon, coordinates.current$lat,
     label = coordinates.current$settlement_name_official_full,
-    labelOptions = labelOptions(textsize = "12px"),
+    labelOptions = labelOptions(textsize = "14px"),
     popup = coordinates.current$html_popup,
     fillColor = "white",
     fillOpacity = 0,
     opacity = 0,
-    radius = 8) %>%
+    radius = 10) %>%
   
   # VILLAGE NUMBERS
   addLabelOnlyMarkers(
@@ -235,7 +235,7 @@ map <- leaflet(feature_data) %>%
     label = coordinates.current$settlement_id,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "left", offset = c(-10, 1),
+      direction = "center", offset = c(0, -1),
       style = list("font-size" = "14px"))
   ) %>%
   
@@ -246,7 +246,7 @@ map <- leaflet(feature_data) %>%
     label = coordinates.current$settlement_name_official,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "right", offset = c(10, 1),
+      direction = "right", offset = c(10, -1),
       style = list("font-size" = "14px"))
   ) %>%
   addLayersControl(

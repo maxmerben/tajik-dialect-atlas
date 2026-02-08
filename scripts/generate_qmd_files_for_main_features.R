@@ -13,6 +13,11 @@ if (file.exists('data/features.csv')) {
   stop("Features database file not found: data/features.csv")
 }
 
+descriptions <- read_delim("data/features_descriptions.csv",
+                          delim = ",", show_col_types = FALSE)
+
+features <- left_join(features, descriptions)
+
 #features <- drop_na(features, "value_eng")
 features$feature_orig <- as.factor(features$feature_orig)
 features$feature_rus <- as.factor(features$feature_rus)
@@ -28,28 +33,16 @@ if (file.exists('data/coordinates.csv')) {
 
 features <- left_join(features, coordinates)
 
-# Get unique features
-unique_features <- features |> 
-  group_by(feature_id, feature_orig, feature_eng) |>
-  summarise(
-    unique_settlements = n_distinct(settlement_id),
-    datapoints = n(),
-    unique_values = n_distinct(value_eng),
-    .groups = 'drop'
-  ) |>
-  arrange(feature_id)
-
-cat("Found", nrow(unique_features), "unique features to process\n")
-
 # Function to create QMD file
 create_qmd_file <- function(feature_row) {
   feature_id <- feature_row$feature_id
   feature_title <- feature_row$feature_eng
+  feature_description <- paste0(feature_row$feature_description, "\n\n")
   
   # Create YAML header with proper CSS styling
   yaml_header <- paste0(
     "---\n",
-    "title: \"", feature_title, "\"\n",
+    "title: '", feature_title, "'\n",
     #"author: \"", compiled, "\"\n",
     "date: ", Sys.Date(), "\n",
     "output:\n",
@@ -61,12 +54,6 @@ create_qmd_file <- function(feature_row) {
     "    css: styles.css\n",
     "---\n\n"
   )
-  
-  # Add feature description if available
-  #description_section <- ""
-  #if (!is.na(feature_description) && feature_description != "" && feature_description != "NA") {
-  #  description_section <- paste0(feature_description, "\n\n")
-  #}
   
   # Map
   
@@ -213,7 +200,7 @@ map <- leaflet(feature_data) %>%
     type = "pie",
     chartdata = minichart_data[, -1],
     colorPalette = value_colors,
-    width = 16,
+    width = 20,
     opacity = 1,
     legendPosition="bottomleft") %>%
   
@@ -222,12 +209,12 @@ map <- leaflet(feature_data) %>%
     coordinates.current$lon, coordinates.current$lat,
     group = "villages",
     label = coordinates.current$settlement_name_official_full,
-    labelOptions = labelOptions(textsize = "12px"),
+    labelOptions = labelOptions(textsize = "14px"),
     popup = coordinates.current$html_popup,
     fillColor = "white",
     fillOpacity = 0,
     opacity = 0,
-    radius = 8) %>%
+    radius = 10) %>%
   
   # VILLAGE NUMBERS
   addLabelOnlyMarkers(
@@ -236,7 +223,7 @@ map <- leaflet(feature_data) %>%
     label = coordinates.current$settlement_id,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "left", offset = c(-10, 1),
+      direction = "center", offset = c(0, -1),
       style = list("font-size" = "14px"))
   ) %>%
   
@@ -247,7 +234,7 @@ map <- leaflet(feature_data) %>%
     label = coordinates.current$settlement_name_official,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "right", offset = c(10, 1),
+      direction = "right", offset = c(10, -1),
       style = list("font-size" = "14px"))
   ) %>%
   addLayersControl(
@@ -280,7 +267,8 @@ DT::datatable(coordinates.current %>%
 ')
   
   # Combine all sections
-  qmd_content <- paste0(yaml_header, map)
+  qmd_content <- paste0(
+    yaml_header, feature_description, map)
   
   # Create filename
   filename <- str_c("feature_", feature_id, ".qmd")
@@ -306,11 +294,11 @@ if (length(to_remove) > 0) {
 cat("Generating QMD files for all features...\n")
 generated_files <- c()
 
-for (i in 1:nrow(unique_features)) {
-  feature_row <- unique_features[i, ]
+for (i in 1:nrow(descriptions)) {
+  feature_row <- descriptions[i, ]
   if (feature_row$feature_eng != "Dialect groups") {
     cat(sprintf("[%d/%d] Processing feature %d: %s\n", 
-                i, nrow(unique_features),
+                i, nrow(descriptions),
                 feature_row$feature_id,
                 feature_row$feature_title))
     
@@ -319,15 +307,16 @@ for (i in 1:nrow(unique_features)) {
   }
 }
 
-unique_features %>%
+descriptions %>%
   group_by(feature_id, feature_eng) %>%
   summarise(html = str_c(
       feature_id, ". <a href='/feature_", feature_id, ".html'>",
       feature_eng, "</a>"),
-    .groups = "drop") -> unique_features_html
-unique_features$html <- unique_features_html$html
+    .groups = "drop") -> descriptions_html
+descriptions$html <- descriptions_html$html
+rm(descriptions_html)
 
-writeLines(paste(unique_features$html, collapse="\n"),
+writeLines(paste(descriptions$html, collapse="\n"),
            "features_list.txt")
 
 cat("\n", paste(rep("=", 60), collapse=""), "\n")
