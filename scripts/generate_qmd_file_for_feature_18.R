@@ -43,8 +43,9 @@ create_qmd_file <- function(feature_row) {
   yaml_header <- paste0(
     "---\n",
     "title: \"", feature_title, "\"\n",
-    #"author: \"", compiled, "\"\n",
     "date: ", Sys.Date(), "\n",
+    "bibliography: data/bib.bib\n",
+    "link-citations: TRUE\n",
     "output:\n",
     "  html_document:\n",
     "    toc: true\n",
@@ -207,14 +208,14 @@ map <- leaflet(feature_data) %>%
     color = coordinates.current$value_color,
     fillOpacity = 100,
     opacity = 0,
-    radius = 10) %>%
+    radius = 12) %>%
   
   # VISIBLE MINICHART MARKERS FOR GROUP VALUES
   addCircleMarkers(
     coordinates.current$lon, coordinates.current$lat,
     fillColor = coordinates.current$group_color,
     fillOpacity = 100,
-    radius = 7,
+    radius = 8,
     opacity = 0) %>%
   
   # INVISIBLE CIRCLE MARKERS FOR POPUP
@@ -226,7 +227,7 @@ map <- leaflet(feature_data) %>%
     fillColor = "white",
     fillOpacity = 0,
     opacity = 0,
-    radius = 10) %>%
+    radius = 12) %>%
   
   # VILLAGE NUMBERS
   addLabelOnlyMarkers(
@@ -246,7 +247,7 @@ map <- leaflet(feature_data) %>%
     label = coordinates.current$settlement_name_official,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "right", offset = c(10, -1),
+      direction = "right", offset = c(13, -1),
       style = list("font-size" = "14px"))
   ) %>%
   addLayersControl(
@@ -311,7 +312,7 @@ for (i in 1:nrow(unique_features)) {
   cat(sprintf("[%d/%d] Processing feature %d: %s\n", 
               i, nrow(unique_features),
               feature_row$feature_id,
-              feature_row$feature_title))
+              feature_row$feature_eng))
   
   filename <- create_qmd_file(feature_row)
   generated_files <- c(generated_files, filename)

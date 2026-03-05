@@ -3,7 +3,7 @@ project:
   output-dir: ./docs
 
 website:
-  title: "Digital Atlas of Tajik Dialects"
+  title: "Rastorgueva’s Atlas of Tajik Dialects"
   navbar:
     left:
       - href: about.qmd

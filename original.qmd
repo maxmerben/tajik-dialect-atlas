@@ -1,0 +1,15 @@
+---
+title: "Original maps"
+format: html
+editor: source
+bibliography: data/bib.bib
+link-citations: TRUE
+---
+
+This pdf file contains the conclusion from Rastorgueva’s book [@rastorgueva1964: 154–162] and the original maps [@rastorgueva1964: 163–182].
+
+```{r, echo=FALSE, out.width="800px", out.height="600px"}
+knitr::include_graphics("data/rastorgueva1964_short.pdf")
+```
+
+## References

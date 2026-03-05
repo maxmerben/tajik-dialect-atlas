@@ -1,6 +1,8 @@
 ---
-title: "Digital Atlas of Tajik Dialects"
-date: 2026-02-02
+title: "Rastorgueva’s Atlas of Tajik Dialects"
+date: 2026-03-05
+bibliography: data/bib.bib
+link-citations: TRUE
 output:
   html_document:
     toc: true
@@ -10,11 +12,20 @@ output:
     css: styles.css
 ---
 
+This is a digitized version 
+of the **dialectal atlas of the Tajik language** 
+from the book *An experience of the comparative study 
+of Tajik dialects* (Rus. *Опыт сравнительного изучения 
+таджикских говоров*) by Soviet linguist Vera Rastorgueva 
+[@rastorgueva1964] (<a href='/about.html'>read more</a>). 
+It contains 17 maps that show the distribution of a variety 
+of linguistic features in around 100 settlements in modern-day 
+Tajikistan and Uzbekistan, as well as a general map of dialect groups.
 
 ## Maps
 
-1. <a href='/feature_1.html'>Reflex of historical vowels /u uː oː/</a>
-2. <a href='/feature_2.html'>Reflex of historical vowels /ɪ iː/</a>
+1. <a href='/feature_1.html'>Reflexes of historical vowels \*u, \*ū, \*ō</a>
+2. <a href='/feature_2.html'>Reflexes of historical vowels \*i, \*ī</a>
 3. <a href='/feature_3.html'>Presence of pharyngeal consonants /h ħ ʔ/</a>
 4. <a href='/feature_4.html'>Spirantization of /b/ in intervocalic and postvocalic positions</a>
 5. <a href='/feature_5.html'>Functions of pronominal enclitics</a>
@@ -27,17 +38,23 @@ output:
 12. <a href='/feature_12.html'>Use of the auxiliary /ɪstodan/ in the indicative mood</a>
 13. <a href='/feature_13.html'>Use of the auxiliary /ɪstodan/ in evidential, subjunctive and presumptive verb forms</a>
 14. <a href='/feature_14.html'>Presence of the presumptive verb forms and serial verb constructions</a>
-15. <a href='/feature_15.html'>Reflex of the ancient adposition /antar/</a>
-16. <a href='/feature_16.html'>Reflex of the ancient adposition /patɪj/</a>
-17. <a href='/feature_17.html'>Reflex of the ancient postposition /radɪj/</a>
+15. <a href='/feature_15.html'>Reflexes of the ancient adposition /antar/</a>
+16. <a href='/feature_16.html'>Reflexes of the ancient adposition /patɪj/</a>
+17. <a href='/feature_17.html'>Reflexes of the ancient postposition /radɪj/</a>
 18. <a href='/feature_18.html'>**Dialect groups**</a>
+
+The original maps can be found <a href='/original.html'>here</a>.
 
 ---
 
 ## How to cite
 
-> Elizaveta Korobova, Timofey Lugovskoy, Maksim Melenchenko. **Digital Atlas of Tajik Dialects**. 2025.
+> Elizaveta Korobova, Timofey Lugovskoy, Maksim Melenchenko. **Rastorgueva’s Atlas of Tajik Dialects**. 2026.
 
 ## Acknowledgements
+
+**TBD**
+
+## References
 
 

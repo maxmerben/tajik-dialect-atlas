@@ -1,6 +1,8 @@
 ---
-title: "Form of the verb suffix in 2nd person plural"
-date: 2026-02-02
+title: 'Form of the verb suffix in 2nd person plural'
+date: 2026-03-05
+bibliography: data/bib.bib
+link-citations: TRUE
 output:
   html_document:
     toc: true
@@ -9,6 +11,10 @@ output:
     highlight: tango
     css: styles.css
 ---
+
+## Description
+
+NA
 
 
 ```{r setup, echo=FALSE, include=FALSE, warning=FALSE}
@@ -153,7 +159,7 @@ map <- leaflet(feature_data) %>%
     type = "pie",
     chartdata = minichart_data[, -1],
     colorPalette = value_colors,
-    width = 16,
+    width = 20,
     opacity = 1,
     legendPosition="bottomleft") %>%
   
@@ -162,12 +168,12 @@ map <- leaflet(feature_data) %>%
     coordinates.current$lon, coordinates.current$lat,
     group = "villages",
     label = coordinates.current$settlement_name_official_full,
-    labelOptions = labelOptions(textsize = "12px"),
+    labelOptions = labelOptions(textsize = "14px"),
     popup = coordinates.current$html_popup,
     fillColor = "white",
     fillOpacity = 0,
     opacity = 0,
-    radius = 8) %>%
+    radius = 10) %>%
   
   # VILLAGE NUMBERS
   addLabelOnlyMarkers(
@@ -176,7 +182,7 @@ map <- leaflet(feature_data) %>%
     label = coordinates.current$settlement_id,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "left", offset = c(-10, 1),
+      direction = "center", offset = c(0, -1),
       style = list("font-size" = "14px"))
   ) %>%
   
@@ -187,7 +193,7 @@ map <- leaflet(feature_data) %>%
     label = coordinates.current$settlement_name_official,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "right", offset = c(10, 1),
+      direction = "right", offset = c(10, -1),
       style = list("font-size" = "14px"))
   ) %>%
   addLayersControl(

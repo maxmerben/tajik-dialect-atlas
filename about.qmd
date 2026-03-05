@@ -2,12 +2,63 @@
 title: "About"
 format: html
 editor: source
+bibliography: data/bib.bib
+link-citations: TRUE
 ---
 
-## How to cite
+## Classification of Tajik dialects
 
-> 
+In 1964, Soviet linguist **Vera Rastorgueva** (Rus. *Вера Расторгуева*) published her book ***An experience of the comparative study of Tajik dialects*** (Rus. *Опыт сравнительного изучения таджикских говоров*)[^1]. This work proposed a new approach to classifying dialects of the Tajik language in the Tajik and Uzbek Soviet republics (modern-day Tajikistan and Uzbekistan).
 
+[^1]: This page is an overview of the general information about Tajik dialects and their classification from [@rastorgueva1964: 154–162].
 
-## Acknowledgements
+Since the early 20th century, there was an idea in Russian and Soviet Iranian studies that Tajik dialects can be divided into two main dialect groups (this view was expressed, for example, by Petr Kuznetsov [-@kuznetsov1915] and Mikhail Andreev [-@andreev1930]). However, according to Rastorgueva, over time it became clear that this classification was imperfect and did not reflect the true complexity of dialectal differences within the Tajik language. For example, the existence of the Varzob dialect, which displays both northern and southern features, led Rastorgueva to propose the existence of a third, “central” dialect group. Nevertheless, even with this correction, the isoglosses of various linguistic phenomena considered key to the definition of dialect groups often did not coincide, which led scholars to identify smaller subgroups within the major dialect groups. Rastorgueva’s 1964 book, *An experience of the comparative study of Tajik dialects*, systematized and expanded on the accumulated knowledge in this field. In particular, the dialect classification proposed in this book has become mainstream in Tajik dialectology and has been repeated in various overviews on this topic [@efimov_etal1982: 12; @windfuhr_perry2009: 420–421].
 
+Vera Rastorgueva suggested that four main dialect groups should be distinguished in the Tajik language: (a) northern, (b) central (Upper Zarafshon), (c) southern, and (d) southeastern (Darvoz). The key linguistic feature by which these groups can be easily distinguished is the reflexes of the Middle Persian back vowels \*u, \*ū, \*ō (see <a href='/feature_18.html'>map</a>). According to Rastorgueva, these vowels are very common in Tajik words and are therefore clearly noticeable upon first encountering a particular dialect. Furthermore, she notes, this classification is indirectly confirmed by other linguistic phenomena: the verb system, certain syntactic features (for example, the left-branching possessive construction, various infinitive and participial constructions, the use of the archaic past participle to express future tense), and lexicon.
+
+Each group can be divided into dialects (*диалекты*), which, in turn, are divided into smaller varieties (*говоры*) and sub-varieties (*подговоры*). The isoglosses of different dialectal phenomena usually do not coincide, so the identification of dialects and varieties can only be made based on specific combinations of isoglosses. The boundaries between individual dialects are unclear, as the dialects gradually merge into one another.
+
+Rastorgueva divides the four groups into the following dialects:
+
+-   **Northern group**
+    -   Samarqand-Buxoro
+    -   Samarqand-Jewish[^2]
+    -   West Fergana
+    -   East Fergana
+    -   Ūroteppa
+    -   Urban Panjakent
+    -   Rural Panjakent
+    -   Varzob-Hisor[^3]
+    -   Boysun
+    -   Derbent
+-   **Central group** (Upper Zarafshon)
+    -   Matcha
+    -   Falgar
+-   **Southern group**
+    -   Karategin
+    -   Rogh
+    -   Northern Kūlob
+    -   Southern Kūlob
+    -   Badakhshan
+-   **Southeastern group** (Darvoz / Near Panj dialects)[^4]
+
+[^2]: Samarqand-Jewish dialect is not mentioned on the <a href='/feature_18.html'>general map</a> of dialect groups [@rastorgueva1964: 182].
+
+[^3]: Rastorgueva mentions Varzob-Hisor dialect, which includes Varzob, Mountain Hisor and Qaratogh varieties, in the overview [@rastorgueva1964: 159]. On the <a href='/feature_18.html'>general map</a> of dialect groups [@rastorgueva1964: 182], however, the settlement of Hisor is not given any label, implying that its dialect group is not yet defined, and there is no Hisor dialect in the legend.
+
+[^4]: The internal classification of the Southeastern group, according to Rastorgueva, had not been determined at the time of her book’s publication. Efimov et al. [-@efimov_etal1982: 12] later identified the following varieties in this group (names preserved from the source): (1) the variety of the Jorf village; (2) the variety of villages Kyrgovat, Poshkharv; (3) the variety of villages Umarak, Zing; (4) the Sediya variety (villages Sangovi Daroz, Durobak, Patkinou); (5) the Shekai variety (villages Shergovat, Yagid, Shkev, Ravnou).
+
+The above-mentioned groups also do not include “transitional” dialects that combine features of several dialects:
+
+-   “Transitional” dialects between the central and northern groups (vocalism of the central type, verb system and syntax of the northern type)
+    -   Upper Chirchiq
+    -   North Fergana
+    -   South Fergana
+-   “Transitional” dialects between the southern and southeastern groups (vocalism of the southern type, verb system of the southeastern type)
+    -   Vakhin-Darvoz (Vakhio-Bolin)
+
+## Digitization of the Atlas
+
+**TBD**
+
+## References

@@ -46,9 +46,10 @@ unique_features$html <- unique_features_html$html
 
 yaml_header <- paste0(
   "---\n",
-  "title: \"Digital Atlas of Tajik Dialects\"\n",
-  #"author: \"", compiled, "\"\n",
+  "title: \"Rastorgueva’s Atlas of Tajik Dialects\"\n",
   "date: ", Sys.Date(), "\n",
+  "bibliography: data/bib.bib\n",
+  "link-citations: TRUE\n",
   "output:\n",
   "  html_document:\n",
   "    toc: true\n",
@@ -59,18 +60,34 @@ yaml_header <- paste0(
   "---\n\n"
 )
 
+description <- "This is a digitized version 
+of the **dialectal atlas of the Tajik language** 
+from the book *An experience of the comparative study 
+of Tajik dialects* (Rus. *Опыт сравнительного изучения 
+таджикских говоров*) by Soviet linguist Vera Rastorgueva 
+[@rastorgueva1964] (<a href='/about.html'>read more</a>). 
+It contains 17 maps that show the distribution of a variety 
+of linguistic features in around 100 settlements in modern-day 
+Tajikistan and Uzbekistan, as well as a general map of dialect groups.\n"
+
 map <- str_c('
 ## Maps
 
 ', paste(unique_features$html, collapse="\n"), '
 
+The original maps can be found <a href="/original.html">here</a>.
+
 ---
 
 ## How to cite
 
-> Elizaveta Korobova, Timofey Lugovskoy, Maksim Melenchenko. **Digital Atlas of Tajik Dialects**. 2025.
+> Elizaveta Korobova, Timofey Lugovskoy, Maksim Melenchenko. **Rastorgueva’s Atlas of Tajik Dialects**. 2026.
 
 ## Acknowledgements
+
+**TBD**
+
+## References
 
 ')
 
@@ -82,7 +99,7 @@ if (length(to_remove) > 0) {
 
 cat("Generating QMD file for the index page...\n")
 
-qmd_content <- paste0(yaml_header, map)
+qmd_content <- paste0(yaml_header, description, map)
 filename <- "index.qmd"
 writeLines(qmd_content, filename)
 

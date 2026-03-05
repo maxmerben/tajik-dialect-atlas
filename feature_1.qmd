@@ -1,6 +1,8 @@
 ---
-title: "Reflex of historical vowels /u uː oː/"
-date: 2026-02-02
+title: 'Reflexes of historical vowels \*u, \*ū, \*ō'
+date: 2026-03-05
+bibliography: data/bib.bib
+link-citations: TRUE
 output:
   html_document:
     toc: true
@@ -9,6 +11,20 @@ output:
     highlight: tango
     css: styles.css
 ---
+
+## Description
+
+Middle Persian back vowels \*u, \*ū, \*ō have different reflexes in modern Tajik dialects:
+
+1. **\*u → /u uː/; \*ū → /uː/; \*ō → /ɵ/**. All three vowels remain separate phonemes. The phoneme /uː/ is in clear opposition to /u/ only in open unstressed syllables. The phoneme /u/ is “unstable” and may be omitted in open unstressed syllables. The pronunciation of the phoneme /ɵ/ differs in quality across dialects, but on average it is more back than /ɵ/ in Near Panj dialects. Attested in Buxoro, East Fergana, Panjakent, Ūroteppa and West Fergana dialects and in some Falgar varieties.
+
+2. **\*u, \*ū → /u/; \*ō → /ɵ/**. Historically long \*ū and short \*u have merged into one phoneme /u/. The phoneme /uː/ is in clear opposition to /u/ only in open unstressed syllables. The phoneme /u/ is “unstable” and may undergo total reduction in open unstressed syllables. The pronunciation of the phoneme /ɵ/ differs in quality across dialects. Attested in Boysun, Derbent, Qaratogh, Samarqand and Varzob dialects.
+
+3. **\*u, \*ū → /y/; \*ū, \*ō → /uː/**. In most cases, historically long \*ū has changed into /y/ (merging with short \*u), but in some words \*ū has retained its vowel quality and changed into /uː/ (thus merging with \*ō). The pronunciation of the phoneme /y/ differs in quality across dialects, specifically in backness. Attested in Matcha, North Fergana, South Fergana dialects and in some Falgar varieties.
+
+4. **\*u → /ɯ/; \*ū, \*ō → /uː/**. The historic vowels \*ū and \*ō have merged into one phoneme /uː/. The pronunciation of the phoneme /ɯ/ has various allophones and may undergo fronting, labialization or reduction depending on the phonetic context. Attested in Badakhshan, Karategin, Kūlob, Vakhiyo-Darvoz dialects and in some Near Panj varieties. According to Rastorgueva’s description, this type is also attested in some Varzob and Hisor varieties, but this is not reflected on her map.
+
+5. **\*u → /ɯ/; \*ū → /y/; \*ō → /ɵ/**. All three vowels remain separate phonemes, but with significant changes in quality. These varieties also have the phoneme /uː/, which in most cases is the result of change from the Middle Persian \*ā before nasals. In some words of high register, mostly of Arabic origin, there is /uː/ that goes back to \*u or \*ū. The pronunciation of the phoneme /ɵ/ differs in quality across dialects, but on average it is more front than /ɵ/ in northern dialects. Attested in Near Panj dialects.
 
 
 ```{r setup, echo=FALSE, include=FALSE, warning=FALSE}
@@ -153,7 +169,7 @@ map <- leaflet(feature_data) %>%
     type = "pie",
     chartdata = minichart_data[, -1],
     colorPalette = value_colors,
-    width = 16,
+    width = 20,
     opacity = 1,
     legendPosition="bottomleft") %>%
   
@@ -162,12 +178,12 @@ map <- leaflet(feature_data) %>%
     coordinates.current$lon, coordinates.current$lat,
     group = "villages",
     label = coordinates.current$settlement_name_official_full,
-    labelOptions = labelOptions(textsize = "12px"),
+    labelOptions = labelOptions(textsize = "14px"),
     popup = coordinates.current$html_popup,
     fillColor = "white",
     fillOpacity = 0,
     opacity = 0,
-    radius = 8) %>%
+    radius = 10) %>%
   
   # VILLAGE NUMBERS
   addLabelOnlyMarkers(
@@ -176,7 +192,7 @@ map <- leaflet(feature_data) %>%
     label = coordinates.current$settlement_id,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "left", offset = c(-10, 1),
+      direction = "center", offset = c(0, -1),
       style = list("font-size" = "14px"))
   ) %>%
   
@@ -187,7 +203,7 @@ map <- leaflet(feature_data) %>%
     label = coordinates.current$settlement_name_official,
     labelOptions = labelOptions(
       noHide = TRUE, textOnly = TRUE,
-      direction = "right", offset = c(10, 1),
+      direction = "right", offset = c(10, -1),
       style = list("font-size" = "14px"))
   ) %>%
   addLayersControl(

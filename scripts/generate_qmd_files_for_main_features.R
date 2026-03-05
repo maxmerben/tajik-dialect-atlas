@@ -43,8 +43,9 @@ create_qmd_file <- function(feature_row) {
   yaml_header <- paste0(
     "---\n",
     "title: '", feature_title, "'\n",
-    #"author: \"", compiled, "\"\n",
     "date: ", Sys.Date(), "\n",
+    "bibliography: data/bib.bib\n",
+    "link-citations: TRUE\n",
     "output:\n",
     "  html_document:\n",
     "    toc: true\n",
@@ -268,7 +269,7 @@ DT::datatable(coordinates.current %>%
   
   # Combine all sections
   qmd_content <- paste0(
-    yaml_header, feature_description, map)
+    yaml_header, "## Description\n\n", feature_description, map)
   
   # Create filename
   filename <- str_c("feature_", feature_id, ".qmd")
@@ -282,7 +283,9 @@ DT::datatable(coordinates.current %>%
 # Remove existing QMD files (except core pages)
 cat("Cleaning up existing QMD files...\n")
 existing_qmd_files <- list.files(".", pattern = "\\.qmd$")
-core_files <- c("index.qmd", "about.qmd", "features.qmd", "feature_18.qmd")
+core_files <- c("index.qmd", "about.qmd",
+                "original.qmd",
+                "features.qmd", "feature_18.qmd")
 to_remove <- existing_qmd_files[!(existing_qmd_files %in% core_files)]
 if (length(to_remove) > 0) {
   file.remove(to_remove)
